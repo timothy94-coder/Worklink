@@ -37,3 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 "# Nyota-Fund" 
 "# Aviator-Predictor..KE-App" 
 "# HuslerFund" 
+"# Handshake.AI" 
