@@ -235,6 +235,9 @@ button,input,select,textarea{font-family:inherit}
 input::placeholder,textarea::placeholder{color:#9CA3AF}
 
 /* NAV */
+
+
+
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);border-bottom:1px solid ${BORDER};display:flex;align-items:center;justify-content:space-between;padding:0 clamp(14px,4vw,48px);transition:box-shadow .2s}
 .nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.07)}
 .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.05rem;color:${NAVY};display:flex;align-items:center;gap:7px;cursor:pointer;flex-shrink:0;white-space:nowrap}
@@ -295,11 +298,91 @@ footer p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6}
 .foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
 .foot-links a{font-size:11px;color:rgba(255,255,255,.4)}
 
-/* DASH NAV */
-.dash-nav{position:sticky;top:60px;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid ${BORDER};padding:0 clamp(10px,3.5vw,40px);height:48px;display:flex;align-items:center;gap:4px;overflow-x:auto}
-.dash-nav::-webkit-scrollbar{height:0}
-.dnav-btn{padding:5px 13px;border-radius:7px;border:none;background:transparent;color:#9CA3AF;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
-.dnav-btn.active{background:${LIGHT};color:${NAVY}}
+/* DASHBOARD NAVIGATION */
+/* =========================
+   PREMIUM DASHBOARD NAVIGATION
+========================= */
+
+.dash-nav{
+  position:sticky;
+  top:52px;               /* Match your top navbar height */
+  z-index:90;
+  height:52px;
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:0 22px;
+  background:#05070B;
+  border-top:none;
+  border-bottom:1px solid rgba(59,130,246,.18);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  box-shadow:none;
+}
+
+.dash-nav::-webkit-scrollbar{
+  display:none;
+}
+
+.dnav-btn{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  height:100%;
+  padding:0 4px;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#94A3B8;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.2px;
+  cursor:pointer;
+  transition:color .25s ease;
+}
+
+.dnav-btn:hover{
+  color:#60A5FA;
+}
+
+.dnav-btn.active{
+  color:#3B82F6;
+}
+
+.dnav-btn.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:3px;
+  border-radius:20px 20px 0 0;
+  background:linear-gradient(90deg,#2563EB,#60A5FA);
+  box-shadow:0 0 10px rgba(37,99,235,.45);
+}
+
+.dnav-btn:focus-visible{
+  color:#60A5FA;
+}
+
+@media(max-width:768px){
+
+  .dash-nav{
+    height:48px;
+    top:48px;
+    gap:18px;
+    padding:0 16px;
+  }
+
+  .dnav-btn{
+    font-size:13px;
+  }
+
+}
 
 /* DASH LAYOUT */
 .dw{max-width:1200px;margin:0 auto;padding:20px clamp(10px,3.5vw,40px)}
@@ -357,6 +440,34 @@ footer p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6}
 .btn-apply:disabled{background:#D1D5DB;cursor:not-allowed;transform:none}
 .btn-apply.applied{background:${GREEN}}
 .btn-apply.applied:hover{transform:none}
+
+
+.ftabs{
+    width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+    background:#fff;
+    padding:6px 0;
+}
+
+.ftabs-track{
+    display:inline-flex;
+    gap:12px;
+    animation:scrollFilters 25s linear infinite;
+}
+
+.ftabs:hover .ftabs-track{
+    animation-play-state:paused;
+}
+
+@keyframes scrollFilters{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
+}
 
 /* PROFILE */
 .pgrid{display:grid;grid-template-columns:250px 1fr;gap:18px}
@@ -430,7 +541,7 @@ footer p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6}
 .info-box{border-radius:10px;padding:10px 13px;font-size:12px;font-weight:600;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start}
 .info-box.blue{background:#EEF4FF;border:1px solid #BFDBFE;color:#1E40AF}
 .info-box.green{background:#D1FAE5;border:1px solid #6EE7B7;color:#065F46}
-.info-box.yellow{background:#FFFBEB;border:1px solid #FCD34D;color:#92400E}
+.info-box.yellow{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);;border:1px solid #6EE7B7;color:#92400E}
 .confirm-list{display:flex;flex-direction:column}
 .crow{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid ${BORDER};gap:10px}
 .crow:last-child{border-bottom:none}
@@ -438,7 +549,7 @@ footer p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6}
 .cv{font-size:12px;color:${NAVY};font-weight:600;text-align:right}
 
 /* WA BOX */
-.wa-box{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);border:1.5px solid #6EE7B7;border-radius:12px;padding:14px;margin-bottom:14px;text-align:center}
+.wa-box{background:#FCD34D;border:1.5px solid #6EE7B7;border-radius:12px;padding:14px;margin-bottom:14px;text-align:center}
 .wa-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;color:#064E3B;margin-bottom:5px}
 .wa-sub{font-size:12px;color:#065F46;line-height:1.62}
 .wa-num{font-size:16px;font-weight:800;color:#064E3B;margin-top:4px;letter-spacing:.04em}
@@ -774,6 +885,18 @@ function ApplyModal({ job, userPhone, onClose, onApplied, addToast }) {
               <div>Choose your preferred town and enter your WhatsApp number. After payment you will be added to the <strong>WorkLink WhatsApp group</strong> where the employer will contact you directly.</div>
             </div>
 
+          <div className="fg">
+  <label className="fl">Full Name</label>
+
+  <input
+    className="finp"
+    type="text"
+    name="name"
+    placeholder="e.g. Jane Wanjiku"
+    autoComplete="name"
+  />
+</div>
+
             <div className="fg">
               <label className="fl">Which town do you want to work in?</label>
               <select
@@ -788,7 +911,7 @@ function ApplyModal({ job, userPhone, onClose, onApplied, addToast }) {
             </div>
 
             <div className="fg">
-              <label className="fl">Your WhatsApp Number</label>
+              <label className="fl">Your WhatsApp Number/call for contact</label>
               <input
                 className={`finp${errs.waPhone?" err":""}`}
                 type="tel" inputMode="numeric"
@@ -815,7 +938,7 @@ function ApplyModal({ job, userPhone, onClose, onApplied, addToast }) {
             <div className="wa-box">
               <div className="wa-title"> You will be added to our WhatsApp group!</div>
               <div className="wa-sub">
-                After payment confirmation, your number <strong>{f.waPhone}</strong> will be added to the <strong>WorkLink Kenya Jobs WhatsApp group</strong> where employers contact workers directly. Report to work on <strong>10 July 2026</strong> once contacted.
+                After payment confirmation, your number <strong>{f.waPhone}</strong> will be added to the <strong>WorkLink Kenya Jobs WhatsApp group for employed people only</strong> Confirm your employment after payment. Report to work on <strong>10 July 2026</strong> once contacted.
               </div>
             </div>
 
@@ -826,7 +949,6 @@ function ApplyModal({ job, userPhone, onClose, onApplied, addToast }) {
                 ["Salary", job.salary],
                 ["Employment Type", job.type],
                 ["Start Date", job.start],
-                ["Vacancies Available", `${job.vacancies} positions`],
                 ["Your WhatsApp", f.waPhone],
                 ...(job.accommodation ? [["Accommodation", "✅ Available"]] : []),
               ].map(([k,v])=>(
@@ -840,8 +962,8 @@ function ApplyModal({ job, userPhone, onClose, onApplied, addToast }) {
             <div className="info-box yellow" style={{marginTop:14}}>
               <span>💳</span>
               <div>
-                A one-time CONNECT Fee of <strong>KES {FEE}</strong>  is required via M-Pesa on the next screen.
-                This adds you to the WhatsApp group and connects you with the employer.
+                A one-time CONNECT Fee of <strong>KES {FEE}</strong>.   is required via M-Pesa on the next screen.
+                This Confirms your Employment from today and you will be contacted by the employer about location and more.
                 &nbsp;<a href="#" onClick={e=>e.preventDefault()} style={{color:"#B45309",textDecoration:"underline"}}>Refund Policy</a>
               </div>
             </div>
@@ -868,11 +990,11 @@ function ApplyModal({ job, userPhone, onClose, onApplied, addToast }) {
                   onChange={e=>{ setPayPhone(e.target.value.replace(/[^\d]/g,"").slice(0,12)); setPayErr(""); }}
                 />
                 {payErr && <div className="ferr">{payErr}</div>}
-                <div className="fhint">Pre-filled with your registration number. You can edit it to pay from a different line.</div>
+                <div className="fhint">GET INSTANT MESSAGE AND EMPLOYER CONFIRMATION CALL AFTER PAYMENT.</div>
               </div>
 
               <div style={{background:LIGHT,border:`1px solid ${BORDER}`,borderRadius:9,padding:"9px 12px",fontSize:12,color:"#6B7280",lineHeight:1.6,marginBottom:0}}>
-                🔐 An M-Pesa STK push will be sent to your phone. Enter your M-Pesa PIN to pay <strong style={{color:NAVY}}>KES {FEE}</strong>. Once confirmed you will be added to the WorkLink WhatsApp group.
+                 An M-Pesa STK push will be sent to your phone. Enter your M-Pesa PIN to pay <strong style={{color:NAVY}}>KES {FEE}</strong>. Once confirmed you will be added to the WorkLink WhatsApp group.
               </div>
             </>}
 
@@ -1138,10 +1260,10 @@ function Dashboard({ user, onLogout, addToast }) {
 
       <div className="dash-nav">
         {[
-          ["jobs","💼 Jobs"],
-          ["applications",`📋 Applied${applied.length?` (${applied.length})`:""}`],
-          ["saved",`❤️ Saved${saved.length?` (${saved.length})`:""}`],
-          ["profile","👤 Profile"],
+          ["jobs"," Jobs"],
+          ["applications",` Applied${applied.length?` (${applied.length})`:""}`],
+          ["saved",` Saved${saved.length?` (${saved.length})`:""}`],
+          ["profile"," Profile"],
         ].map(([k,l])=>(
           <button key={k} className={`dnav-btn${tab===k?" active":""}`} onClick={()=>setTab(k)}>{l}</button>
         ))}
@@ -1152,24 +1274,12 @@ function Dashboard({ user, onLogout, addToast }) {
         {/* ══ JOBS ══ */}
         {tab==="jobs" && <>
           <div className="welcome">
-            <div className="whi">Hello, {(user.name||"Worker").split(" ")[0]} 👋</div>
+            <div className="whi">Hello, {(user.name||"Worker").split(" ")[0]} </div>
+
             <div className="wsub">{JOBS.length} job types · {totalVacancies}+ vacancies · All starting 10 July 2026 · KES 30,000+/month</div>
           </div>
 
-          <div className="ds-grid">
-            {[
-              {ico:"💼",n:JOBS.length,l:"Job Types"},
-              {ico:"👥",n:totalVacancies+"+",l:"Total Vacancies"},
-              {ico:"📋",n:applied.length,l:"My Applications"},
-              {ico:"📅",n:"10 Jul",l:"Jobs Start"},
-            ].map(d=>(
-              <div key={d.l} className="dsc">
-                <div className="dsc-ico">{d.ico}</div>
-                <div className="dsc-n" style={{fontSize:typeof d.n==="string"&&d.n.length>5?"1.1rem":undefined}}>{d.n}</div>
-                <div className="dsc-l">{d.l}</div>
-              </div>
-            ))}
-          </div>
+         
 
           <div className="s-row">
             <div className="sbox">
@@ -1180,10 +1290,18 @@ function Dashboard({ user, onLogout, addToast }) {
           </div>
 
           <div className="ftabs">
-            {ALL_CATS.map(c=>(
-              <button key={c} className={`ftab${catFilter===c?" on":""}`} onClick={()=>setCatFilter(c)}>{c}</button>
-            ))}
-          </div>
+  <div className="ftabs-track">
+    {[...ALL_CATS, ...ALL_CATS].map((c, i) => (
+      <button
+        key={i}
+        className={`ftab${catFilter === c ? " on" : ""}`}
+        onClick={() => setCatFilter(c)}
+      >
+        {c}
+      </button>
+    ))}
+  </div>
+</div>
 
           {visible.length===0 ? (
             <div className="empty">
@@ -1437,10 +1555,15 @@ function Dashboard({ user, onLogout, addToast }) {
    ROOT
 ════════════════════════════════════════ */
 export default function WorkLinkKenya() {
-  const [screen, setScreen] = useState("landing");
+const [screen, setScreen] = useState("dashboard");
   const [showReg, setShowReg] = useState(false);
-  const [user, setUser] = useState(null);
-  const [toasts, setToasts] = useState([]);
+const [user, setUser] = useState({
+  name: "Guest User",
+  phone: "",
+  gender: "",
+  age: "",
+  education: "",
+});  const [toasts, setToasts] = useState([]);
 
   const addToast = useCallback((msg,icon="ℹ️")=>{
     const id=++_tid;
@@ -1466,12 +1589,11 @@ export default function WorkLinkKenya() {
     <>
       <style>{CSS}</style>
       <div style={{overflowY:"auto",height:"100vh"}}>
-        {screen==="landing" && (
-          <Landing onRegister={()=>setShowReg(true)} onLogin={handleLogin}/>
-        )}
-        {screen==="dashboard" && user && (
-          <Dashboard user={user} onLogout={()=>{ setScreen("landing"); setUser(null); }} addToast={addToast}/>
-        )}
+        <Dashboard
+  user={user}
+  onLogout={() => {}}
+  addToast={addToast}
+/>
       </div>
       {showReg && <RegisterModal onClose={()=>setShowReg(false)} onDone={handleRegDone}/>}
       <Toasts list={toasts} remove={removeToast}/>
