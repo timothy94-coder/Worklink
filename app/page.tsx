@@ -1190,7 +1190,7 @@ function Landing({ onRegister, onLogin }) {
 
       <div className="cta-banner">
         <h2>Ready to start earning KES 30,000+ per month?</h2>
-        <p>Register free. No experience needed. All Kenyans 18+ welcome. Jobs start 10 July 2026. Many include free accommodation.</p>
+        <p>Register free. No experience needed. All Kenyans 18+ welcome. Jobs start 20 July 2026. Many include free accommodation.</p>
         <button className="btn-hp" onClick={onRegister} style={{background:"linear-gradient(135deg,${BLUE},${GREEN})"}}>Register Free Now →</button>
       </div>
 
