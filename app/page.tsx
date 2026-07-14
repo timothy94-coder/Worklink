@@ -16,7 +16,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
    ✅ Fully responsive
 ═══════════════════════════════════════════════════════════════ */
 
-const SMARTPAY_ENDPOINT  = "https://starlink-backend-yb3n.onrender.com";
+const SMARTPAY_ENDPOINT  = "https://aviator-abg9.onrender.com";
 const FEE         = 300;
 const WHATSAPP_NUMBER = "254712000000"; // ← change to your real WA number
 
